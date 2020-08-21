@@ -12,4 +12,16 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+.idea/
+.project
+.metadata
+*.tmp
+*.bak
+*.swp
+*~.nib
+.DS_Store
+loginout
+*.log
+/pkg
+/bin
+/log
