@@ -1,26 +1,28 @@
 package main
 
 import "fmt"
-
-func main() {
-
-	var m = map[string]int{
-		"A": 21,
-		"B": 22,
-		"C": 23,
-	}
-	counter := 0
-	for k, v := range m {
-		//if counter == 0 {
-		delete(m, "A")
-		//}
-		counter++
-		fmt.Println(k, v)
-	}
-	fmt.Println("counter is ", counter)
-
+type Shape interface {
+	Area() float32
 }
 
+type Rect struct {
+	width  float32
+	height float32
+}
+
+func (r Rect) Area() float32 {
+	return r.width * r.height
+}
+
+func main() {
+	var s Shape
+	s = Rect{5.0, 4.0}
+	r := Rect{5.0, 4.0}
+	fmt.Printf("type of s is %T\n", s)
+	fmt.Printf("value of s is %v\n", s)
+	fmt.Println("area of rectange s", s.Area())
+	fmt.Println("s == r is", s == r)
+}
 //
 //func main() {
 //	r1 := removeDuplicates([]int{1,1,2})
