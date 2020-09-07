@@ -1,40 +1,54 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"path/filepath"
+	"strings"
+)
 
 func main() {
-	r1 := removeDuplicates([]int{1, 1, 2})
+	r1 := simplifyPath("/a/../../b/../c//.//")
 	fmt.Println(r1)
 
 }
 
 /**
 * 问题
-* 给定一个有序数组 nums，对数组中的元素进行去重，使得原数组中的每个元素只有一个。最后返回去重以后数组的长度值。
-* 2020-08-23
+* 给出一个 Unix 的文件路径，要求简化这个路径。这道题也是考察栈的题目。
+* 2020-09-05
 * Example:
-* Given nums = [1,1,2],
-* Your function should return length = 2,
-* Given nums = [0,0,1,1,1,2,2,3,3,4],
-* Your function should return length = 5
+* Input: "/a/../../b/../c//.//"
+* Output: "/c"
 *
+* Input: "/a//b////c/d//././/.."
+* Output: "/a/b/c"
 *
  */
-func removeDuplicates(nums []int) int {
-	if len(nums) == 0 {
-		return 0
-	}
-	last, finder := 0, 0
-	for last < len(nums)-1 {
-		for nums[finder] == nums[last] {
-			finder++
-			if finder == len(nums) {
-				return last + 1
-			}
-		}
-		nums[last+1] = nums[finder]
-		last++
-	}
-	return last + 1
 
+// 解法一
+func simplifyPath(path string) string {
+	arr := strings.Split(path, "/")
+	stack := make([]string, 0)
+	var res string
+	for i := 0; i < len(arr); i++ {
+		cur := arr[i]
+		//cur := strings.TrimSpace(arr[i]) 更加严谨的做法应该还要去掉末尾的空格
+		if cur == ".." {
+			if len(stack) > 0 {
+				stack = stack[:len(stack)-1]
+			}
+		} else if cur != "." && len(cur) > 0 {
+			stack = append(stack, arr[i])
+		}
+	}
+	if len(stack) == 0 {
+		return "/"
+	}
+	res = strings.Join(stack, "/")
+	return "/" + res
+}
+
+// 解法二 golang 的官方库 API
+func simplifyPath1(path string) string {
+	return filepath.Clean(path)
 }

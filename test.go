@@ -1,28 +1,18 @@
 package main
 
-import "fmt"
-type Shape interface {
-	Area() float32
-}
-
-type Rect struct {
-	width  float32
-	height float32
-}
-
-func (r Rect) Area() float32 {
-	return r.width * r.height
-}
+import (
+	"fmt"
+)
 
 func main() {
-	var s Shape
-	s = Rect{5.0, 4.0}
-	r := Rect{5.0, 4.0}
-	fmt.Printf("type of s is %T\n", s)
-	fmt.Printf("value of s is %v\n", s)
-	fmt.Println("area of rectange s", s.Area())
-	fmt.Println("s == r is", s == r)
-}
+	    s := make([]int, 3, 9)
+	    fmt.Println(len(s))
+	    s2 := s[4:9]
+	    fmt.Println(s)
+	    fmt.Println(s2)
+	    fmt.Println(len(s2))
+	}
+
 //
 //func main() {
 //	r1 := removeDuplicates([]int{1,1,2})
@@ -35,7 +25,7 @@ func main() {
 ///**
 // * 问题1
 // * 给定一个有序数组 nums，对数组中的元素进行去重，使得原数组中的每个元素只有一个。最后返回去重以后数组的长度值。
-// * 2020-08-23
+// * 2020-09-07
 // * Example:
 // * Given nums = [1,1,2],
 // * Your function should return length = 2,
