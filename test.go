@@ -1,17 +1,21 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	    s := make([]int, 3, 9)
-	    fmt.Println(len(s))
-	    s2 := s[4:9]
-	    fmt.Println(s)
-	    fmt.Println(s2)
-	    fmt.Println(len(s2))
-	}
+	a, b := test(100)
+	a()
+	b()
+
+}
+
+func test(x int) (func(), func()) {
+	return func() {
+			x += 10
+			println(x)
+
+		}, func() {
+			println(x)
+		}
+}
 
 //
 //func main() {
@@ -23,7 +27,7 @@ func main() {
 //
 //
 ///**
-// * 问题1
+// * 问题
 // * 给定一个有序数组 nums，对数组中的元素进行去重，使得原数组中的每个元素只有一个。最后返回去重以后数组的长度值。
 // * 2020-09-07
 // * Example:
