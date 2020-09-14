@@ -1,20 +1,16 @@
 package main
 
+import "fmt"
+
+var nil = new(int)
+
 func main() {
-	a, b := test(100)
-	a()
-	b()
-
-}
-
-func test(x int) (func(), func()) {
-	return func() {
-			x += 10
-			println(x)
-
-		}, func() {
-			println(x)
-		}
+	var p *int
+	if p == nil {
+		fmt.Println("p is nil")
+	} else {
+		fmt.Println("p is not nil")
+	}
 }
 
 //
